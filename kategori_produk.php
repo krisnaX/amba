@@ -47,7 +47,7 @@ if (!isset($_SESSION["login"])) {
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+        <img src="assets/img/log0.png" alt="">
         <span class="d-none d-lg-block">inventory25550023</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -204,7 +204,7 @@ if (!isset($_SESSION["login"])) {
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="#">RifkyAdhiyoko</a>
+      Designed by <a href="#">Krisna</a>
     </div>
   </footer><!-- End Footer -->
 

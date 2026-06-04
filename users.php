@@ -48,7 +48,7 @@ if (!isset($_SESSION["login"])) {
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+        <img src="assets/img/log0.png" alt="">
         <span class="d-none d-lg-block">inventory25550023</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -218,7 +218,7 @@ if (!isset($_SESSION["login"])) {
       &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      Designed by <a href="https://bootstrapmade.com/">Krisna</a>
     </div>
   </footer><!-- End Footer -->
 

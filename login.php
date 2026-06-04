@@ -3,40 +3,40 @@ session_start();
 include "koneksi.php";
 
 if (isset($_POST['login'])) {
-    
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = $_POST['password'];
-    
-    // cek user
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' LIMIT 1");
-    $user = mysqli_fetch_assoc($query);
-    
-    if ($user) {
-        
-        // cek password (hash)
-        if (password_verify($password, $user['password'])) {
-            
-            // cek aktif
-            if ($user['is_active'] == 1) {
-                
-                // simpan session
-                $_SESSION['login'] = True;
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['name'] = $user['name'];
-                $_SESSION['role'] = $user['role'];
-                
-                // redirect
-                header("Location: index.php");
-                exit;
-            } else {
-                echo "<script>alert('Akun tidak aktif');</script>";
-            }
-        } else {
-            echo "<script>alert('Password salah');</script>";
-        }
+
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $password = $_POST['password'];
+
+  // cek user
+  $query = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' LIMIT 1");
+  $user = mysqli_fetch_assoc($query);
+
+  if ($user) {
+
+  // cek password (hash)
+  if (password_verify($password, $user['password'])) {
+
+    // cek aktif
+    if ($user['is_active'] == 1) {
+
+      // simpan session
+      $_SESSION['login'] = True;
+      $_SESSION['user_id'] = $user['id'];
+      $_SESSION['name'] = $user['name'];
+      $_SESSION['role'] = $user['role'];
+
+      // redirect
+      header("Location: index.php");
+      exit;
     } else {
-        echo "<script>alert('Email tidak ditemukan');</script>";
-    }
+      echo "<script>alert('Akun tidak aktif');</sript>";
+    } 
+  } else {
+    echo "<script>alert('Password salah');</sript>";
+  }
+} else {
+  echo "<script>alert('Email tidak ditemukan');</sript>";
+}
 }
 ?>
 <!DOCTYPE html>
@@ -46,12 +46,12 @@ if (isset($_POST['login'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Login - inventory25550023</title>
+  <title>Pages / Login - inventory25550023</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/log0.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -70,311 +70,69 @@ if (isset($_POST['login'])) {
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+  <main>
+    <div class="container">
 
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">inventory25550023</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
+              <div class="d-flex justify-content-center py-4">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <img src="assets/img/log0.png" alt="">
+                  <span class="d-none d-lg-block">inventory25550023</span>
+                </a>
+              </div><!-- End Logo -->
 
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
+              <div class="card mb-3">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
+                <div class="card-body">
 
-        <li class="nav-item dropdown">
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                    <p class="text-center small">Enter your username & password to login</p>
+                  </div>
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+                  <form class="row g-3 needs-validation" method="POST" novalidate>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                    <div class="col-12">
+                      <label class="form-label">Email</label>
+                      <input type="email" name="email" class="form-control" required>
+                      <div class="invalid-feedback">Please enter your email.</div>
+                      </div>
 
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
+                    <div class="col-12">
+                      <label class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" required>
+                      <div class="invalid-feedback">Please enter your password!</div>
+                      </div>
+
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit" name="login">Login</button>
+                    </div>
+                    
+                  </form>
+
+                </div>
               </div>
-            </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
+              <div class="credits">
+                Designed by <a>Krisna</a>
               </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->
-
-  
-
-  <main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>Login</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Login</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Login Form</h5>
-              
-              <form class="row g-3 needs-validation" method="POST" novalidate>
-                <div class="col-12">
-                  <label class="form-label">Email</label>
-                  <input type="email" name="email" class="form-control" required>
-                  <div class="invalid-feedback">Please enter your email.</div>
-                </div>
-                <div class="col-12">
-                  <label class="form-label">Password</label>
-                  <input type="password" name="password" class="form-control" required>
-                  <div class="invalid-feedback">Please enter your password!</div>
-                </div>
-                <div class="col-12">
-                  <button class="btn btn-primary w-100" type="submit" name="login">Login</button>
-                </div>
-              </form>
 
             </div>
           </div>
-
         </div>
 
-        <div class="col-lg-6">
+      </section>
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Information</h5>
-              <p>Silakan masukkan email dan password Anda untuk mengakses sistem inventory.</p>
-              <hr>
-              <p class="mb-0">Demo Account:</p>
-              <small>Email: admin@example.com<br>Password: 12345678</small>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
+    </div>
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>inventory25550023</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      Designed by <a href="https://GIGAGAY.com/">Krisna</a>
-    </div>
-  </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
